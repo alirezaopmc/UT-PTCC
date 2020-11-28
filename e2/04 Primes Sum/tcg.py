@@ -12,6 +12,21 @@ def arrayToString(arr: list):
             result += "{}".format(arr[i])
     
     return result
+    
+# Is Prime?
+def isPrime(n):
+    if n == 1:
+        return False
+    if n == 2:
+        return True
+    elif n % 2 == 0:
+        return False
+    
+    for i in range(3, int(math.sqrt(n))+1, 2):
+        if n % i == 0:
+            return False
+    
+    return True
 
 
 # Test-case generator template
@@ -22,21 +37,18 @@ def arrayToString(arr: list):
 count = 0
 
 def giveRandomInput():
-    n, m = random.randint(1, 101), random.randint(1, 101)
-    c = ['a', '*', '!'][random.randint(0, 2)]
-    return (n, m, c)
+    n = random.randint(1, 100000)
+    return (n)
 
 def solveOut(inputs):
-    (n, m, c) = inputs
+    (n) = inputs
     
-    res = ''
-    for i in range(n):
-        res += ' ' * (n - i - 1)
-        for j in range(2*i+1):
-            res += c if j != m-1 else ' '
-        res += '\n'
+    ans = 0
+    for i in range(2, n):
+        if isPrime(i):
+            ans += i
 
-    return res
+    return str(ans)
 
 def makeInputs(inString, cnt):
     path = "./in/input" + str(cnt) + ".txt"
@@ -52,11 +64,11 @@ def makeOutputs(outString, cnt):
 
 # Manually add some inputs
 if "Case 1":
-    n, m, c = 3, 1, '%'
-    inputs = (n, m, c)
+    n = 14
+    inputs = (n)
     
-    inString = "{} {} {}\n".format(
-        n, m, c
+    inString = "{}\n".format(
+        n
     )
     outString = solveOut(inputs)
     
@@ -65,11 +77,11 @@ if "Case 1":
     makeOutputs(outString, count)
     
 if "Case 2":
-    n, m, c = 3, 2, 'Z'
-    inputs = (n, m, c)
+    n = 18
+    inputs = (n)
     
-    inString = "{} {} {}\n".format(
-        n, m, c
+    inString = "{}\n".format(
+        n
     )
     outString = solveOut(inputs)
     
@@ -81,10 +93,10 @@ if "Case 2":
 for i in range(10):
     print(i)
     inputs = giveRandomInput()
-    (n, m, c) = inputs
+    (n) = inputs
 
-    inString = "{} {} {}\n".format(
-        n, m, c
+    inString = "{}\n".format(
+        n
     )
     outString = solveOut(inputs)
 
