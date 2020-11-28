@@ -37,7 +37,7 @@ def isPrime(n):
 count = 0
 
 def giveRandomInput():
-    n = random.randint(1, 100000)
+    n = random.randint(1, 10000)
     return (n)
 
 def solveOut(inputs):
